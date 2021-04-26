@@ -22,6 +22,7 @@ public class MerchandiseSearchController {
         Map<String, Object> map = new HashMap<>();
         map.put("advs",merchandiseSearch.searchBanner());
         map.put("fourads",merchandiseSearch.searchBanner());
+
         return new Result(true, 1, "查询成功", map);
     }
 }
