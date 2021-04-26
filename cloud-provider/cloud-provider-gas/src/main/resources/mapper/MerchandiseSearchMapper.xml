@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hww.cloudprovidergas.mapper.MerchandiseSearchMapper">
+
+    <select id="searchbanner" resultType="com.hww.common.entity.BsAds">
+       select id,title,url,sort_num from bs_ads where bs_ads.url_type = '1' ORDER BY sort_num LIMIT 0,4
+    </select>
+
+</mapper>
