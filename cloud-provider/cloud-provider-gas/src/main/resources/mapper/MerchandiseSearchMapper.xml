@@ -7,5 +7,14 @@
     <select id="searchbanner" resultType="com.hww.common.entity.BsAds">
        select id,title,url,sort_num from bs_ads where bs_ads.url_type = '1' ORDER BY sort_num LIMIT 0,4
     </select>
+    <select id="searchCates" resultType="com.hww.common.entity.BsCates">
+        select id,cate_name,thumb from bs_cates where sort_num  = 999;
+    </select>
+    <select id="searchGoods" resultType="com.hww.common.entity.BsGoods">
+        select id,good_name,good_thumb,sale_price from bs_goods where  sale_status = 1;
+    </select>
+    <select id="searchAllGoods" resultType="com.hww.common.entity.BsGoods">
+        select id,good_name,good_thumb,sale_price from bs_goods
+    </select>
 
 </mapper>
