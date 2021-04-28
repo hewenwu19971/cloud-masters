@@ -1,6 +1,8 @@
 package com.hww.cloudprovidergas.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hww.cloudprovidergas.mapper.MerchandiseSearchMapper;
 import com.hww.cloudprovidergas.service.MerchandiseSearchService;
@@ -34,17 +36,23 @@ public class MerchandiseSearchImpl implements MerchandiseSearchService {
     }
 
     @Override
-    public BsGoodsVo searchAllGoods(int currentpage) {
-        BsGoodsVo bsGoods = new BsGoodsVo();
-        IPage<BsGoods> userPage = new Page<>(currentpage, 6);//参数一是当前页，参数二是每页个数
-        userPage = merchandiseSearchMapper.selectPage(userPage, null);
-        bsGoods.setCurrent(currentpage);
-        bsGoods.setSize(10);
-        bsGoods.setTotal(userPage.getTotal());
-        bsGoods.setGoodsList(userPage.getRecords());
-        bsGoods.setPages(userPage.getPages());
-        return bsGoods;
+    public BsGoodsVo searchAllGoods(BsGoodsVo bsGoodsVo) {
+        QueryWrapper<BsGoods> query = Wrappers.query();
+        if (bsGoodsVo.getCatesid() != 0) {
+            query.eq("cate_id",bsGoodsVo.getCatesid());
+        }
+        if (bsGoodsVo.getCurrent() != null){
+        IPage<BsGoods> userPage = new Page<>(bsGoodsVo.getCurrent(), 6);//参数一是当前页，参数二是每页个数
+        userPage = merchandiseSearchMapper.selectPage(userPage, query);
+        bsGoodsVo.setCurrent(bsGoodsVo.getCurrent());
+        bsGoodsVo.setSize(10);
+        bsGoodsVo.setTotal(userPage.getTotal());
+        bsGoodsVo.setGoodsList(userPage.getRecords());
+        bsGoodsVo.setPages(userPage.getPages());
+        }
+        return bsGoodsVo;
 
     }
+
 
 }

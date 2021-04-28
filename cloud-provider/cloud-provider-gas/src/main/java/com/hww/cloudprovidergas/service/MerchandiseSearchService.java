@@ -13,5 +13,5 @@ public interface MerchandiseSearchService {
     public List<BsAds> searchBanner();
     List<BsCates> searchCates();
     List<BsGoods> searchGoods();
-    BsGoodsVo searchAllGoods(int currentPage);
+    BsGoodsVo searchAllGoods(BsGoodsVo bsGoodsVo);
 }

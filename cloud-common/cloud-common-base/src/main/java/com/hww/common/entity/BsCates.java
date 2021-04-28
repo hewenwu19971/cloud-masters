@@ -1,7 +1,9 @@
 package com.hww.common.entity;
 
 
-public class BsCates {
+import java.io.Serializable;
+
+public class BsCates implements Serializable {
 
   private long id;
   private String cateName;

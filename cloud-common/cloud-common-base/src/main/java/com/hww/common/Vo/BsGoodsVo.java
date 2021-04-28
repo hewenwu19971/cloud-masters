@@ -6,10 +6,11 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class BsGoodsVo {
+public class BsGoodsVo<T> {
+    private long catesid;
     private Integer current;
     private Integer size;
     private Long total;
-    private List<BsGoods> goodsList;
+    private List<T> goodsList;
     private Long pages;
 }
