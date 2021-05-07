@@ -10,4 +10,6 @@ public interface BsCatesService {
     List<BsCates> findByIdCates(BsCates bsCates);
 
     List<BsGoods> findByCateIdGoods(BsCates bsCates);
+
+
 }

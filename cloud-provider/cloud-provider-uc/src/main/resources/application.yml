@@ -1,0 +1,11 @@
+server:
+  port: 8003
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+spring:
+  application:
+    name: cloud-provider-uc

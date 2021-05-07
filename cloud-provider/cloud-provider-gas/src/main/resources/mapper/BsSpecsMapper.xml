@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hww.cloudprovidergas.mapper.BsSpecsMapper">
+
+    <resultMap id="BsSpecs" type="com.hww.common.entity.BsSpecs">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="spec_name" property="specName" jdbcType="VARCHAR"/>
+        <result column="merchant_id" property="merchantId" jdbcType="INTEGER"/>
+        <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
+        <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP"/>
+        <collection property="bsSpecAttrs" ofType="com.hww.common.entity.BsSpecAttrs" javaType="java.util.List">
+            <id property="id" column="bsaid"/>
+            <result column="spec_id" property="specId"/>
+            <result column="attr_name" property="attrName"/>
+            <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
+            <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryBsSpecs" resultMap="BsSpecs" parameterType="string">
+        select bs.*,bsa.id bsaid,bsa.spec_id,bsa.attr_name from bs_specs bs left join bs_spec_attrs bsa on
+        bs.id=bsa.spec_id where bs.id in
+        <foreach collection="list" item="employeeId" index="index"
+                 open="(" close=")" separator=",">
+            #{employeeId}
+        </foreach>
+
+
+    </select>
+</mapper>

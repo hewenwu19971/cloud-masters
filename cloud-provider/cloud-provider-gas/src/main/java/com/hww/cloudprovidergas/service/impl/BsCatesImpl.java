@@ -37,4 +37,6 @@ public class BsCatesImpl implements BsCatesService {
         query.eq("cate_id",bsCates.getId());
         return merchandiseSearchMapper.selectList(query);
     }
+
+
 }

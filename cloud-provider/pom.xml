@@ -19,6 +19,8 @@
 
     <modules>
         <module>cloud-provider-gas</module>
+        <module>cloud-provider-orders</module>
+        <module>cloud-provider-uc</module>
     </modules>
 
     <dependencies>

@@ -17,6 +17,7 @@
         <module>cloud-provider</module>
         <module>cloud-eruake</module>
         <module>cloud-common</module>
+        <module>cloud-gateway</module>
     </modules>
 
     <properties>
@@ -25,12 +26,10 @@
         <druid.version>1.0.29</druid.version>
         <mysql.version>8.0.23</mysql.version>
         <mybatis-plus.version>3.3.2</mybatis-plus.version>
+        <cloud-gateway.version>3.0.2</cloud-gateway.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -60,6 +59,8 @@
             <version>2.4.5</version>
         </dependency>
 
+
+
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -75,6 +76,12 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
                 <version>3.0.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-gateway</artifactId>
+                <version>${cloud-gateway.version}</version>
             </dependency>
 
             <dependency>
@@ -101,6 +108,8 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
