@@ -22,6 +22,11 @@ spring:
           - Path=/api/auth/**
 
         - id: cloud-provider-gas
+          uri:  lb://cloud-provider-orders
+          predicates:
+          - Path=/api/order/**
+
+        - id: cloud-provider-gas
           uri:  lb://cloud-provider-gas
           predicates:
           - Path=/api/**

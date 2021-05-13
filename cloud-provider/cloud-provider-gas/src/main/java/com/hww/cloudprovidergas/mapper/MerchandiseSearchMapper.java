@@ -25,4 +25,5 @@ public interface MerchandiseSearchMapper extends BaseMapper<BsGoods> {
     List<BsGoods> searchGoods();
 
     List<BsGoods> searchAllGoods();
+
 }

@@ -1,15 +1,14 @@
 server:
-  port: 8002
+  port: 8004
 eureka:
   instance:
     prefer-ip-address: true
-
   client:
     service-url:
       defaultZone: http://localhost:8001/eureka/
 spring:
   application:
-    name: cloud-provider-gas
+    name: cloud-provider-orders
   datasource:
     #数据源基本配置
     type: com.alibaba.druid.pool.DruidDataSource
@@ -34,6 +33,16 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-mybatis-plus:
-  mapper-locations: classpath:/mapper/*Mapper.xml
-  type-aliases-package: com.hww.common.entity
+  mybatis-plus:
+    mapper-locations: classpath:/mapper/*Mapper.xml
+    type-aliases-package: com.hww.common.entity
+
+  rabbitmq:
+    host: 159.75.3.93
+    port: 5672
+    username: hewenwu
+    password: qq.2226565664
+    publisher-returns: true
+    listener:
+      direct:
+        acknowledge-mode: manual

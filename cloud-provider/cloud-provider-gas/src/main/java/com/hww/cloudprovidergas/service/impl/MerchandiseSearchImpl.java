@@ -10,6 +10,7 @@ import com.hww.cloudprovidergas.mapper.BsSpecsMapper;
 import com.hww.cloudprovidergas.mapper.MerchandiseSearchMapper;
 import com.hww.cloudprovidergas.service.MerchandiseSearchService;
 import com.hww.common.Vo.BsGoodsVo;
+import com.hww.common.Vo.PrepareVo;
 import com.hww.common.entity.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +100,10 @@ public class MerchandiseSearchImpl implements MerchandiseSearchService {
         List<BsSpecAttrs> bsSpecAttrs = bsSpecAttrMapper.selectList(query);
         return bsSpecAttrs;
     }
-
+    @Override
+    public BsGoods findByGoodsId(PrepareVo prepareVo) {
+        BsGoods bsGoods = merchandiseSearchMapper.selectById(prepareVo.getCartVos().getSku_id());
+        return bsGoods;
+    }
 
 }

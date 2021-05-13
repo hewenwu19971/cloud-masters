@@ -27,6 +27,7 @@
         <mysql.version>8.0.23</mysql.version>
         <mybatis-plus.version>3.3.2</mybatis-plus.version>
         <cloud-gateway.version>3.0.2</cloud-gateway.version>
+        <open-feign.version>2.2.6.RELEASE</open-feign.version>
     </properties>
     <dependencies>
 
@@ -109,7 +110,11 @@
                 <version>${mybatis-plus.version}</version>
             </dependency>
 
-
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${open-feign.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
