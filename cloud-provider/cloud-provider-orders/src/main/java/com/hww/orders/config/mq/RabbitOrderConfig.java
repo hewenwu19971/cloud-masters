@@ -28,7 +28,7 @@ public class RabbitOrderConfig {
     @Bean
     public Queue norma1Queue() {
         Map<String, Object> map = new HashMap<>();
-        map.put("x-message-ttl", 150000);//message在该队列queue的存活时间最大为10秒
+       // map.put("x-message-ttl", 10000);//message在该队列queue的存活时间最大为10秒
         map.put("x-dead-letter-exchange", DELAY_EXCHANGE); //x-dead-letter-exchange参数是设置该队列的死信交换器（DLX）
         map.put("x-dead-letter-routing-key", DELAY_ROUTINGKEY);//x-dead-letter-routing-key参数是给这个DLX指定路由键
         return new Queue(NORMAL_QUEUE, true, false, false, map);
@@ -65,11 +65,5 @@ public class RabbitOrderConfig {
                 .with(DELAY_ROUTINGKEY);
     }
 
-    @Bean
-    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(ConnectionFactory connectionFactory) {
-        SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
-        factory.setConnectionFactory(connectionFactory);
-        factory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
-        return factory;
-    }
+
 }

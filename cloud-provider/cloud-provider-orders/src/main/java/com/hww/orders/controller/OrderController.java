@@ -56,11 +56,11 @@ public class OrderController {
         bsOrders.setMobile(address.getMobile());
         bsOrders.setOrderSn(prepareVo.getOrderSn());
         map.put("bsOrders", bsOrders);
-        map.put("address", address);
         String msg = JSON.toJSONString(map);
+        goodsOrdersServic.addOrder(bsOrders);
         orderSender.send(msg);
 
-
+        map.put("payed",1);
         return new Result(true, 1, "成功", map);
     }
 

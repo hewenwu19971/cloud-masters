@@ -35,15 +35,15 @@ public class OrderDelReceiver {
     @RabbitHandler
     public void handleMessage(Message msg, Channel channel) throws IOException {
         log.info("死亡消费者接收到了消息,ts={}", LocalDateTime.now().toString());
-        log.info("map={}",msg);
         Map map = JSON.parseObject(msg.getBody(), Map.class);
-        Object bsOrderGoods = map.get("bsOrderGoods");
+        Object bsOrderGoods = map.get("bsOrders");
+        log.info("bsOrders={}",map);
         BsOrders bsOrders = JSONObject.parseObject(bsOrderGoods.toString(), BsOrders.class);
 
         QueryWrapper<BsOrderGoods> query = Wrappers.query();
         QueryWrapper<BsOrders> ordersQuery = Wrappers.query();
-        ordersQuery.eq("orderSn",bsOrders.getOrderSn());
-        query.eq("orderSn",bsOrders.getOrderSn());
+        ordersQuery.eq("order_sn",bsOrders.getOrderSn());
+        query.eq("order_sn",bsOrders.getOrderSn());
         bsOrderGoodsMapper.delete(query);
         bsOrdersMapper.delete(ordersQuery);
 

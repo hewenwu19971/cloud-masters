@@ -42,7 +42,6 @@ spring:
     port: 5672
     username: hewenwu
     password: qq.2226565664
-    publisher-returns: true
-    listener:
-      direct:
-        acknowledge-mode: manual
+    configuration:
+      # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

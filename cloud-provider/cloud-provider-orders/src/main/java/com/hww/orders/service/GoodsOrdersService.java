@@ -14,4 +14,6 @@ public interface GoodsOrdersService {
      BsGoods findByGoodsId(PrepareVo prepareVo);
      Integer addGoodsOrder(BsOrderGoods bsOrderGoods);
      Integer addOrder(BsOrders bsOrders);
+
+    Object findOrderOrdersbByOrderNo(String toString);
 }

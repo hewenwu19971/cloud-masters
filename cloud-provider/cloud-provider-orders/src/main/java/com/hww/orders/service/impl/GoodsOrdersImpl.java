@@ -1,5 +1,7 @@
 package com.hww.orders.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.hww.common.Vo.PrepareVo;
 import com.hww.common.entity.BsGoods;
 import com.hww.common.entity.BsOrderGoods;
@@ -32,5 +34,12 @@ public class GoodsOrdersImpl implements GoodsOrdersService {
     @Override
     public Integer addOrder(BsOrders bsOrders) {
         return bsOrdersMapper.insert(bsOrders);
+    }
+
+    @Override
+    public Object findOrderOrdersbByOrderNo(String toString) {
+        QueryWrapper<BsOrderGoods> query = Wrappers.query();
+        query.eq("order_sn",toString);
+        return bsOrderGoodsMapper.selectOne(query);
     }
 }
