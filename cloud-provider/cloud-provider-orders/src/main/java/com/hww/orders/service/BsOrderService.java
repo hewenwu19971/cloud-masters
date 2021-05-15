@@ -5,4 +5,6 @@ import com.hww.common.entity.BsOrders;
 public interface BsOrderService {
 
     BsOrders findOrderOrdersbByOrderNo(String orderNo);
+
+    void modifyOrderStatus(String orderSn);
 }

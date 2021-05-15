@@ -1,13 +1,16 @@
 package com.hww.orders.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.hww.common.Vo.PayVo;
 import com.hww.common.Vo.PrepareVo;
 import com.hww.common.base.Result;
 import com.hww.common.entity.*;
 import com.hww.common.utils.SnowFlakeUtil;
 import com.hww.orders.mq.OrderSender;
 import com.hww.orders.service.impl.AddressesImpl;
+import com.hww.orders.service.impl.BsOrderImpl;
 import com.hww.orders.service.impl.GoodsOrdersImpl;
+import com.hww.orders.service.impl.MemmberImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +30,10 @@ public class OrderController {
     private AddressesImpl addressesServic;
     @Autowired
     private OrderSender orderSender;
+    @Autowired
+    private MemmberImpl memmberService;
+    @Autowired
+    private BsOrderImpl bsOrderService;
 
     /**
      * {products: [{sku_id: 2699, count: "2"}], address: 109, from: "quick", total_price: 252}
@@ -60,7 +67,7 @@ public class OrderController {
         goodsOrdersServic.addOrder(bsOrders);
         orderSender.send(msg);
 
-        map.put("payed",1);
+        map.put("payed", 1);
         return new Result(true, 1, "成功", map);
     }
 
@@ -79,7 +86,7 @@ public class OrderController {
         List<Object> list = new ArrayList<>();
         BsOrderGoods bsOrderGoods = new BsOrderGoods();
         BsGoods bsGoods = goodsOrdersServic.findByGoodsId(prepareVo);
-        log.info("/prepare;bsgoods={}",bsGoods);
+        log.info("/prepare;bsgoods={}", bsGoods);
         bsOrderGoods.setMid(Long.valueOf(userId));
         bsOrderGoods.setGoodId(bsGoods.getId());
         bsOrderGoods.setOrderSn(String.valueOf(OrderId));
@@ -95,5 +102,23 @@ public class OrderController {
         map.put("address", addressesServic.getByAddressesId(userId));
         map.put("products", list);
         return new Result(true, 1, "成功", map);
+    }
+
+    @RequestMapping("/pay")
+    public Result pay(@RequestBody PayVo payVo) {
+        int userId = 3589;
+        BsMembers members = memmberService.findPayPwdByUserId(userId);
+        if (payVo.getPwd().equals(members.getPayPwd())) {
+            if (members.getBalance() > payVo.getMoney()) {
+                Integer payment = memmberService.payment(payVo, members.getBalance(), userId);
+                if (payment > 0) {
+                    bsOrderService.modifyOrderStatus(payVo.getOrderSn());
+                    return new Result(true, 1, "成功");
+                }
+                return new Result(false, 2, "系统错误，支付失败");
+            }
+            return new Result(false, 2, "余额不足");
+        }
+        return new Result(false, 2, "支付密码错误");
     }
 }

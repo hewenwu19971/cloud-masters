@@ -44,8 +44,12 @@ public class OrderDelReceiver {
         QueryWrapper<BsOrders> ordersQuery = Wrappers.query();
         ordersQuery.eq("order_sn",bsOrders.getOrderSn());
         query.eq("order_sn",bsOrders.getOrderSn());
-        bsOrderGoodsMapper.delete(query);
-        bsOrdersMapper.delete(ordersQuery);
+
+        BsOrders bsOrders1 = bsOrdersMapper.selectOne(ordersQuery);
+        if (bsOrders1.getStatus() == 0) {
+            bsOrderGoodsMapper.delete(query);
+            bsOrdersMapper.delete(ordersQuery);
+        }
 
         //channel.basicAck(msg.getMessageProperties().getDeliveryTag(),false);
     }
