@@ -108,9 +108,10 @@ public class OrderController {
     public Result pay(@RequestBody PayVo payVo) {
         int userId = 3589;
         BsMembers members = memmberService.findPayPwdByUserId(userId);
+        log.info("/pay:{}",payVo);
         if (payVo.getPwd().equals(members.getPayPwd())) {
             if (members.getBalance() > payVo.getMoney()) {
-                Integer payment = memmberService.payment(payVo, members.getBalance(), userId);
+                Integer payment = memmberService.payment(payVo, members, userId);
                 if (payment > 0) {
                     bsOrderService.modifyOrderStatus(payVo.getOrderSn());
                     return new Result(true, 1, "成功");

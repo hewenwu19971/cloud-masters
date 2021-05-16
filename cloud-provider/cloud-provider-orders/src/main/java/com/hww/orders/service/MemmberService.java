@@ -7,5 +7,5 @@ public interface MemmberService {
 
     BsMembers findPayPwdByUserId(int id);
 
-    Integer payment(PayVo payVo, double balance,int userId);
+    Integer payment(PayVo payVo, BsMembers balance, int userId);
 }

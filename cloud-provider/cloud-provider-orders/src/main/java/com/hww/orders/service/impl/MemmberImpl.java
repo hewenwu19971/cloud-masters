@@ -22,11 +22,11 @@ public class MemmberImpl implements MemmberService {
     }
 
     @Override
-    public Integer payment(PayVo payVo, double balance,int userId) {
+    public Integer payment(PayVo payVo, BsMembers balance, int userId) {
         QueryWrapper<BsMembers> query = Wrappers.query();
-        query.eq("user_id",userId).eq("balance",balance);
-        BsMembers bsMembers = new BsMembers();
-        bsMembers.setBalance(balance-payVo.getMoney());
-        return bsMembersMapper.update(bsMembers, query);
+        query.eq("user_id",userId).eq("balance",balance.getBalance());
+
+        balance.setBalance(balance.getBalance()-payVo.getMoney());
+        return bsMembersMapper.update(balance, query);
     }
 }
