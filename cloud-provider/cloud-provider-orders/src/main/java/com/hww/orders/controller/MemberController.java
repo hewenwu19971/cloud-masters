@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -26,9 +28,16 @@ public class MemberController {
 
     @RequestMapping("/order/view")
     public Result orderDetail(@RequestBody BsOrders bsOrders) {
-        log.info("BsOrders:{}", bsOrders);
+        log.info("BsOrders:{}", bsOrders.getOrderSn());
         List<Object> list = new ArrayList<>();
         list.add(goodsOrdersServic.findOrderOrdersbByOrderNo(bsOrders.getOrderSn().toString()));
-        return new Result(true, 1, "成功",list );
+
+        Map<String, Object> map = new HashMap<>();
+
+       map.put("bsOrders",bsOrderService.findOrderOrdersbByOrderNo(bsOrders.getOrderSn()));
+       map.put("goodsOrder",list);
+
+
+        return new Result(true, 1, "成功",map );
     }
 }

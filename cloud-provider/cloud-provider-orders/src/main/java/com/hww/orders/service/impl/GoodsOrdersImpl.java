@@ -40,6 +40,7 @@ public class GoodsOrdersImpl implements GoodsOrdersService {
     public Object findOrderOrdersbByOrderNo(String toString) {
         QueryWrapper<BsOrderGoods> query = Wrappers.query();
         query.eq("order_sn",toString);
+
         return bsOrderGoodsMapper.selectOne(query);
     }
 }

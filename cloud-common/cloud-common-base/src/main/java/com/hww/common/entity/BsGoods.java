@@ -391,6 +391,56 @@ public class BsGoods {
     this.updatedAt = updatedAt;
   }
 
+  @Override
+  public String toString() {
+    return "BsGoods{" +
+            "id=" + id +
+            ", goodName='" + goodName + '\'' +
+            ", goodDes='" + goodDes + '\'' +
+            ", goodThumb='" + goodThumb + '\'' +
+            ", goodImages='" + goodImages + '\'' +
+            ", oldPrice=" + oldPrice +
+            ", goodPrice=" + goodPrice +
+            ", salePrice=" + salePrice +
+            ", lowSpecPrice=" + lowSpecPrice +
+            ", goodStock=" + goodStock +
+            ", goodWeight=" + goodWeight +
+            ", specId='" + specId + '\'' +
+            ", salesVolume=" + salesVolume +
+            ", saleStartTime=" + saleStartTime +
+            ", saleEndTime=" + saleEndTime +
+            ", goodDetail='" + goodDetail + '\'' +
+            ", cateId=" + cateId +
+            ", cascaderVals='" + cascaderVals + '\'' +
+            ", saleStatus=" + saleStatus +
+            ", status=" + status +
+            ", merchantId=" + merchantId +
+            ", sortNum=" + sortNum +
+            ", shareAmount=" + shareAmount +
+            ", points=" + points +
+            ", levelPoints=" + levelPoints +
+            ", goodsType=" + goodsType +
+            ", usePoints=" + usePoints +
+            ", maxNumber=" + maxNumber +
+            ", groupPrice=" + groupPrice +
+            ", requiredNumber=" + requiredNumber +
+            ", groupValidTime=" + groupValidTime +
+            ", groupSuccessNum=" + groupSuccessNum +
+            ", groupStartTime=" + groupStartTime +
+            ", groupEndTime=" + groupEndTime +
+            ", isOpenInvoice=" + isOpenInvoice +
+            ", isOutTerritory=" + isOutTerritory +
+            ", createdAt=" + createdAt +
+            ", updatedAt=" + updatedAt +
+            ", isOneselfBargain=" + isOneselfBargain +
+            ", bargainSpecPrice=" + bargainSpecPrice +
+            ", bargainActivityTime=" + bargainActivityTime +
+            ", bargainActivityEndtime=" + bargainActivityEndtime +
+            ", bargainTime=" + bargainTime +
+            ", bargainScope='" + bargainScope + '\'' +
+            ", bargainNum=" + bargainNum +
+            '}';
+  }
 
   public long getIsOneselfBargain() {
     return isOneselfBargain;

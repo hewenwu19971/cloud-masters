@@ -37,15 +37,16 @@ public class OrderDelReceiver {
         log.info("死亡消费者接收到了消息,ts={}", LocalDateTime.now().toString());
         Map map = JSON.parseObject(msg.getBody(), Map.class);
         Object bsOrderGoods = map.get("bsOrders");
-        log.info("bsOrders={}",map);
-        BsOrders bsOrders = JSONObject.parseObject(bsOrderGoods.toString(), BsOrders.class);
 
+        BsOrders bsOrders = JSONObject.parseObject(bsOrderGoods.toString(), BsOrders.class);
+        log.info("bsOrders={}",bsOrders.getOrderSn());
         QueryWrapper<BsOrderGoods> query = Wrappers.query();
         QueryWrapper<BsOrders> ordersQuery = Wrappers.query();
         ordersQuery.eq("order_sn",bsOrders.getOrderSn());
         query.eq("order_sn",bsOrders.getOrderSn());
 
         BsOrders bsOrders1 = bsOrdersMapper.selectOne(ordersQuery);
+        log.info("bsOrders1={}",bsOrders1);
         if (bsOrders1.getStatus() == 0) {
             bsOrderGoodsMapper.delete(query);
             bsOrdersMapper.delete(ordersQuery);

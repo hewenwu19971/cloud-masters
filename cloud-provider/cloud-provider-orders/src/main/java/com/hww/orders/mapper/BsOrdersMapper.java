@@ -1,6 +1,7 @@
 package com.hww.orders.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.hww.common.Vo.OrdersVo;
 import com.hww.common.entity.BsOrders;
 import org.apache.ibatis.annotations.Mapper;
 

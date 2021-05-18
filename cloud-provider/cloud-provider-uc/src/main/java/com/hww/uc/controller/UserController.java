@@ -9,8 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    @RequestMapping("/api/auth/login")
-    public Result login(@RequestBody BsAdmins admins){
-        return new Result(true,1,"成功");
-    }
+
 }

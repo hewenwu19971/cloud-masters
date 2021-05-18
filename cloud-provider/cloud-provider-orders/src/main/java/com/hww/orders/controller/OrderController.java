@@ -81,6 +81,7 @@ public class OrderController {
     @RequestMapping("/prepare")
     public Result prepare(@RequestBody PrepareVo prepareVo) {
         long OrderId = SnowFlakeUtil.getSnowflakeId();//id
+        log.info("雪花ID{}",OrderId);
         Map<String, Object> map = new HashMap<>();
         String userId = "206";
         List<Object> list = new ArrayList<>();
