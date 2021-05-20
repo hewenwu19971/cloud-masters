@@ -26,5 +26,6 @@ public class BsMembers {
   private java.sql.Timestamp updatedAt;
   private double creditMoney;
   private int userId;
+  private String password;
 
 }

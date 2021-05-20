@@ -19,12 +19,12 @@ spring:
         - id: cloud-provider-uc
           uri:  lb://cloud-provider-uc
           predicates:
-          - Path=/api/auth/**
+          - Path=/api/auth/**,/api/member/**
 
         - id: cloud-provider-orders
           uri:  lb://cloud-provider-orders
           predicates:
-          - Path=/api/order/**,/api/member/**
+          - Path=/api/order/**
 
         - id: cloud-provider-gas
           uri:  lb://cloud-provider-gas
