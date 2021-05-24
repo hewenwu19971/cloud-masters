@@ -1,16 +1,13 @@
-package com.hww.uc.security;
+package com.hww.common.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.CompressionCodecs;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Component
-public class TokenManager {
-
+public class TokenUtil {
     private long tokenExpiration = 24 * 60 * 60 * 1000;//一天
     private long refreshTokenExpiration = 30 * 24 * 60 * 60 * 1000;//一月
     private String tokenSignKey = "123456";
@@ -75,5 +72,4 @@ public class TokenManager {
     public void removeToken(String token) {
         //jwttoken无需删除，客户端扔掉即可。
     }
-
 }

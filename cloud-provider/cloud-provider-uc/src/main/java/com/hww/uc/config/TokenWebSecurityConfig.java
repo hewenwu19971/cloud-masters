@@ -33,7 +33,7 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public TokenWebSecurityConfig(UserDetailsService userDetailsService, DefaultPasswordEncoder defaultPasswordEncoder,
-                                  TokenManager tokenManager,StringRedisTemplate redisTemplate) {
+                                  TokenManager tokenManager, StringRedisTemplate redisTemplate) {
         this.userDetailsService = userDetailsService;
         this.defaultPasswordEncoder = defaultPasswordEncoder;
         this.tokenManager = tokenManager;
@@ -44,16 +44,16 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.exceptionHandling()
-                //.authenticationEntryPoint(new UnauthorizedEntryPoint())
+                .authenticationEntryPoint(new UnauthorizedEntryPoint())
                 .and().csrf().disable()
                 .authorizeRequests()
                 .anyRequest().authenticated()
                 .and().logout().logoutUrl("/api/auth/quit").logoutRequestMatcher(new AntPathRequestMatcher("/api/auth/quit", "GET"))
                 //登出业务
-                .addLogoutHandler(new TokenLogoutHandler(tokenManager,redisTemplate)).and()
+                .addLogoutHandler(new TokenLogoutHandler(tokenManager, redisTemplate)).and()
                 //配置登录拦截
-                .addFilter(new TokenLoginFilter(authenticationManager(), tokenManager,redisTemplate))
-                .addFilter(new TokenAuthenticationFilter(authenticationManager(), tokenManager,redisTemplate)).httpBasic();
+                .addFilter(new TokenLoginFilter(authenticationManager(), tokenManager, redisTemplate))
+                .addFilter(new TokenAuthenticationFilter(authenticationManager(), tokenManager, redisTemplate)).httpBasic();
 
     }
 
@@ -77,6 +77,6 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/quit","/profile");
+        web.ignoring().antMatchers("/quit", "/profile");
     }
 }

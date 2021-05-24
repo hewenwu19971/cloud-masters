@@ -7,10 +7,14 @@ import com.hww.orders.mapper.BsOrdersMapper;
 import com.hww.orders.service.BsOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static com.alibaba.druid.sql.visitor.SQLEvalVisitorUtils.eq;
 
 @Service
+@Transactional
 public class BsOrderImpl implements BsOrderService {
     @Autowired
     private BsOrdersMapper bsOrdersMapper;
@@ -18,16 +22,16 @@ public class BsOrderImpl implements BsOrderService {
     @Override
     public BsOrders findOrderOrdersbByOrderNo(String orderNo) {
         QueryWrapper<BsOrders> query = Wrappers.query();
-        query.eq("order_sn",orderNo);
+        query.eq("order_sn", orderNo);
         return bsOrdersMapper.selectOne(query);
     }
 
     @Override
-    public void modifyOrderStatus(String orderSn) {
+    public void modifyOrderStatus(List<String> orderSn) {
         BsOrders bsOrders = new BsOrders();
         bsOrders.setStatus(2);
         QueryWrapper<BsOrders> query = Wrappers.query();
-        query.eq("order_sn",orderSn);
-        bsOrdersMapper.update(bsOrders,query);
+        query.eq("order_sn", orderSn);
+        bsOrdersMapper.update(bsOrders, query);
     }
 }

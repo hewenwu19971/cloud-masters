@@ -17,10 +17,10 @@ public class AddressesImpl implements AddressesService {
     private AddressesMapper addressesMapper;
 
     @Override
-    public BsAddresses getByAddressesId(String userId) {
+    public BsAddresses getByAddressesId(Long userId) {
         QueryWrapper<BsAddresses> query = Wrappers.query();
         query.eq("m_id", userId);
-        query.eq("is_default", 1);
+        query.eq("is_default", 2);
         return addressesMapper.selectOne(query);
 
     }

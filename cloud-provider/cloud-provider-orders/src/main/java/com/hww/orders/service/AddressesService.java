@@ -5,6 +5,6 @@ import com.hww.common.entity.BsAddresses;
 import java.util.List;
 
 public interface AddressesService {
-    BsAddresses getByAddressesId(String Id);
+    BsAddresses getByAddressesId(Long Id);
     BsAddresses findAddressById(String Id);
 }

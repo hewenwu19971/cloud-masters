@@ -12,8 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TSysUserImpl implements TSysUserService
-{
+public class TSysUserImpl implements TSysUserService {
     @Autowired
     private TSysUserMapper tSysUserMapper;
 
@@ -35,7 +34,21 @@ public class TSysUserImpl implements TSysUserService
     @Override
     public TSysUser getUserAll(String user) {
         QueryWrapper<TSysUser> query = Wrappers.query();
-        query.eq("username",user);
+        query.eq("username", user);
+        return tSysUserMapper.selectOne(query);
+    }
+
+    @Override
+    public Integer upDataUser(TSysUser tSysUser) {
+        QueryWrapper<TSysUser> query = Wrappers.query();
+        query.eq("username", tSysUser.getUsername());
+        return tSysUserMapper.update(tSysUser, query);
+    }
+
+    @Override
+    public TSysUser getUserId(String username) {
+        QueryWrapper<TSysUser> query = Wrappers.query();
+        query.eq("username", username);
         return tSysUserMapper.selectOne(query);
     }
 }

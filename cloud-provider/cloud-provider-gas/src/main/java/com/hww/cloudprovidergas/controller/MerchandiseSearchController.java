@@ -67,8 +67,9 @@ public class MerchandiseSearchController {
         if (BsGoods.getSpecId() != null) {
             String[] split = BsGoods.getSpecId().split(",");
             List<String> strings = Arrays.asList(split);
-            List<BsSpecs> bsSpecsList = bsSpecsService.findSpecs(strings);
-            map.put("sku", bsSpecsList);
+            List<BsSpecs> specs = bsSpecsService.findSpecs(strings);
+            log.info("sku{}",specs);
+            map.put("sku", specs);
         }
         map.put("product", BsGoods);
         return new Result(true, 1, "查询成功", map);

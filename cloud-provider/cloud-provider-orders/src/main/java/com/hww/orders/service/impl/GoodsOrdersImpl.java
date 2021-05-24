@@ -22,8 +22,8 @@ public class GoodsOrdersImpl implements GoodsOrdersService {
     @Autowired
     private BsOrdersMapper bsOrdersMapper;
     @Override
-    public BsGoods findByGoodsId(PrepareVo prepareVo) {
-        return goodsMapper.selectById(prepareVo.getCartVos().getSku_id());
+    public BsGoods findByGoodsId(int id) {
+        return goodsMapper.selectById(id);
     }
 
     @Override

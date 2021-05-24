@@ -16,7 +16,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://159.75.3.93:3306/qqmy?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
-    password: qq.2226565664
+    password: Qq.2226565664
     #数据源其他配置
     initialSize: 5
     minIdle: 5
@@ -34,6 +34,19 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  redis:
+    host: 159.75.3.93
+    port: 6379
+    timeout: 5000
+    database: 0
+    jedis:
+      pool:
+        max-active: 50
+        min-idle: 2
+        max-idle: 8
+        max-wait: 3000
+    password: qq.2226565664
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
   type-aliases-package: com.hww.common.entity
+

@@ -3,9 +3,11 @@ package com.hww.common.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 @Data
-public class BsOrderGoods {
+public class BsOrderGoods implements Serializable {
 
   private long id;
   private String orderSn;

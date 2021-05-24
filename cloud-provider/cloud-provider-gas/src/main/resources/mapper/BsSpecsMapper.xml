@@ -14,13 +14,14 @@
             <id property="id" column="bsaid"/>
             <result column="spec_id" property="specId"/>
             <result column="attr_name" property="attrName"/>
+            <result column="spec_price" property="specPrice"/>
             <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
             <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP"/>
         </collection>
     </resultMap>
 
     <select id="queryBsSpecs" resultMap="BsSpecs" parameterType="string">
-        select bs.*,bsa.id bsaid,bsa.spec_id,bsa.attr_name from bs_specs bs left join bs_spec_attrs bsa on
+        select bs.*,bsa.id bsaid,bsa.spec_id,bsa.attr_name,bsa.spec_price from bs_specs bs left join bs_spec_attrs bsa on
         bs.id=bsa.spec_id where bs.id in
         <foreach collection="list" item="employeeId" index="index"
                  open="(" close=")" separator=",">

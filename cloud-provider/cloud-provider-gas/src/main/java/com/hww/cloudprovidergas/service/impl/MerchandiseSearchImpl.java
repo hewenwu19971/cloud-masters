@@ -102,8 +102,9 @@ public class MerchandiseSearchImpl implements MerchandiseSearchService {
     }
     @Override
     public BsGoods findByGoodsId(PrepareVo prepareVo) {
-        BsGoods bsGoods = merchandiseSearchMapper.selectById(prepareVo.getCartVos().getSku_id());
-        return bsGoods;
+        //BsGoods bsGoods = merchandiseSearchMapper.selectById(prepareVo.getCartVos().getSku_id());
+        //return bsGoods;
+    return null;
     }
 
 }

@@ -8,4 +8,8 @@ public interface TSysUserService {
     Integer addUser(RegisterVo registerVo);
 
     TSysUser getUserAll(String user);
+
+    Integer upDataUser(TSysUser tSysUser);
+
+    TSysUser getUserId(String username);
 }

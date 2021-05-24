@@ -6,5 +6,4 @@ import com.hww.common.entity.BsCates;
 
 public interface CartService {
     void addCart (BsCart cartVo);
-
 }
