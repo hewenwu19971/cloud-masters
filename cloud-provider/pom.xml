@@ -21,6 +21,7 @@
         <module>cloud-provider-gas</module>
         <module>cloud-provider-orders</module>
         <module>cloud-provider-uc</module>
+        <module>cloud-provider-ms</module>
     </modules>
 
     <dependencies>

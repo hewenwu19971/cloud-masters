@@ -1,5 +1,5 @@
 server:
-  port: 8003
+  port: 8005
 eureka:
   instance:
     prefer-ip-address: true
@@ -8,7 +8,7 @@ eureka:
       defaultZone: http://localhost:8001/eureka/
 spring:
   application:
-    name: cloud-provider-uc
+    name: cloud-provider-ms
   datasource:
     #数据源基本配置
     type: com.alibaba.druid.pool.DruidDataSource
@@ -36,12 +36,7 @@ spring:
     mybatis-plus:
       mapper-locations: classpath:/mapper/*Mapper.xml
       type-aliases-package: com.hww.common.entity
-  mail:
-    host: smtp.qq.com
-    username: 2226565664@qq.com
-    password: fgnpkwjccwsyeaaf
-    protocol: smtps
-    default-encoding: UTF-8
+
   redis:
     host: 159.75.3.93
     port: 6379
@@ -54,8 +49,6 @@ spring:
         max-idle: 8
         max-wait: 3000
     password: qq.2226565664
-mail:
-  fromMail:
-    addr: 2226565664@qq.com
-
-
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl

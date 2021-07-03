@@ -70,4 +70,6 @@ public class MemberController {
 
         return new Result(true, bsAddressService.deleteAddress(bsAddresses.getId()), "成功");
     }
+
+
 }
