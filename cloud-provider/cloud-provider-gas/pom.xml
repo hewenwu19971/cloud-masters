@@ -7,15 +7,15 @@
             <groupId>com.hww</groupId>
             <artifactId>cloud-common-base</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <scope>runtime</scope>
         </dependency>
-
     </dependencies>
     <parent>
         <groupId>com.hww</groupId>
         <artifactId>cloud-provider</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+    <packaging>jar</packaging>
     <groupId>com.hww</groupId>
     <artifactId>cloud-provider-gas</artifactId>
     <version>0.0.1-SNAPSHOT</version>
